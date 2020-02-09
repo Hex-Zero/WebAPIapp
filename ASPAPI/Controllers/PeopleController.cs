@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ASPAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,10 +10,17 @@ namespace ASPAPI.Controllers
 {
     public class PeopleController : ApiController
     {
-        // GET: api/People
-        public IEnumerable<string> Get()
+        List<Person> people = new List<Person>();
+
+        public PeopleController()
         {
-            return new string[] { "value1", "value2" };
+            people.Add(new Person { FirstName = "Ace", Id = 1, LastName = "Alrich" });
+            people.Add(new Person { FirstName = "Ilona", Id = 1, LastName = "Alrich" });
+        }
+        // GET: api/People
+        public List<Person> get()
+        {
+            return people;
         }
 
         // GET: api/People/5
@@ -25,11 +33,6 @@ namespace ASPAPI.Controllers
         public void Post([FromBody]string value)
         {
         }
-
-        // PUT: api/People/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
 
         // DELETE: api/People/5
         public void Delete(int id)
